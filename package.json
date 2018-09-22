@@ -1,0 +1,56 @@
+{
+  "name": "bk-cli",
+  "version": "0.0.1",
+  "author": "Berg",
+  "bin": {
+    "bk-cli": "./dist/index.js"
+  },
+  "engines": {
+    "node": ">=v8.11.1"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/zxhaaa6/bk-cli.git",
+  "scripts": {
+    "build": "babel lib --out-dir dist",
+    "lint": "eslint '{lib,tests}/**/*.js'",
+    "precommit": "npm run prettify && npm run lint",
+    "prettify": "prettier --write --single-quote --trailing-comma all --loglevel silent '{lib,tests}/**/*.js'",
+    "start": "concurrently \"npm:lint\" \"npm:prettify\" \"npm:build\""
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "commander": "^2.18.0",
+    "download-git-repo": "^1.1.0",
+    "dotenv": "^6.0.0",
+    "inquirer": "^6.2.0",
+    "moment": "^2.22.0",
+    "ora": "^3.0.0",
+    "rimraf": "^2.6.2",
+    "single-line-log": "^1.1.2",
+    "tildify": "^1.2.0",
+    "user-home": "^2.0.0",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "concurrently": "^4.0.1",
+    "eslint": "^5.6.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "husky": "^0.14.3",
+    "jest": "^23.6.0",
+    "prettier": "^1.14.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit",
+      "pre-": "npm run precommit",
+      "pre-push": "npm run prettify && npm run lint",
+      "pre-rebase": "npm run prettify && npm run lint"
+    }
+  }
+}
