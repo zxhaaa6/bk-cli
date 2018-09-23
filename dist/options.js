@@ -16,6 +16,8 @@ var _chalk = _interopRequireDefault(require("chalk"));
 
 var _inquirer = _interopRequireDefault(require("inquirer"));
 
+var _ora = _interopRequireDefault(require("ora"));
+
 function confirmCreate(_x, _x2, _x3, _x4) {
   return _confirmCreate.apply(this, arguments);
 }
@@ -58,7 +60,7 @@ function _selectOptions() {
   _selectOptions = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
   _regenerator.default.mark(function _callee2() {
-    var options;
+    var options, spinner;
     return _regenerator.default.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -69,8 +71,36 @@ function _selectOptions() {
           case 2:
             options = _context2.sent;
             console.log(options);
+            spinner = (0, _ora.default)('creating project...').start();
+            _context2.next = 7;
+            return new Promise(function (resolve) {
+              setTimeout(function () {
+                spinner.info('create project successfully');
+                resolve();
+              }, 5000);
+            });
 
-          case 4:
+          case 7:
+            spinner = (0, _ora.default)('npm install ...').start();
+            _context2.next = 10;
+            return new Promise(function (resolve) {
+              setTimeout(function () {
+                spinner.info('npm install successfully');
+                resolve();
+              }, 8000);
+            });
+
+          case 10:
+            spinner = (0, _ora.default)('check health ...').start();
+            _context2.next = 13;
+            return new Promise(function (resolve) {
+              setTimeout(function () {
+                spinner.succeed('Enjoy your time, Bye bye.');
+                resolve();
+              }, 2000);
+            });
+
+          case 13:
           case "end":
             return _context2.stop();
         }
@@ -91,15 +121,23 @@ var typeOptions = [{
 }, {
   type: 'list',
   name: 'jsType',
-  message: 'What type language do you like?',
+  message: 'What type language would you like?',
   choices: ['Javascript', 'Typescript'],
   filter: function filter(val) {
     return val.toLowerCase();
   }
 }, {
+  type: 'list',
+  name: 'framework',
+  message: 'Which Web Framework would you like?',
+  choices: ['Express', 'Koa', 'Egg(coming soon)', 'Nest(coming soon)', 'Graphql-yoga'],
+  filter: function filter(val) {
+    return val.toLowerCase();
+  }
+}, {
   type: 'checkbox',
-  message: 'check features needed for your project',
-  name: 'toppings',
+  message: 'Check features needed for your project',
+  name: 'features',
   choices: [{
     name: 'Webpack',
     checked: true
@@ -110,8 +148,26 @@ var typeOptions = [{
     checked: true
   }, {
     name: 'Unit Testing'
+  }, {
+    name: 'Docker Compose'
   }],
   validate: function validate(answer) {
     return true;
+  }
+}, {
+  type: 'list',
+  name: 'db',
+  message: 'Which DB client would you use?',
+  choices: ['Mongodb', 'Mysql', 'Postgres'],
+  filter: function filter(val) {
+    return val.toLowerCase();
+  }
+}, {
+  type: 'list',
+  name: 'cache',
+  message: 'Would you like a cache middleware?',
+  choices: ['Redis', 'Memcached(coming soon)'],
+  filter: function filter(val) {
+    return val.toLowerCase();
   }
 }];
