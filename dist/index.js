@@ -7,11 +7,13 @@ var _commander = _interopRequireDefault(require("commander"));
 
 var _chalk = _interopRequireDefault(require("chalk"));
 
+var _config = _interopRequireDefault(require("./config"));
+
 var _main = require("./main");
 
 var log = console.log;
 
-_commander.default.version('0.0.1', '-v, --version').usage('init [project-name]');
+_commander.default.version(_config.default.version, '-v, --version').usage('init [project-name]');
 
 _commander.default.command('init <project_name>').description('create a new project with giving name').action(function (project_name) {
   (0, _main.run)(project_name);

@@ -12,11 +12,7 @@ var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"))
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
-var _chalk = _interopRequireDefault(require("chalk"));
-
 var _inquirer = _interopRequireDefault(require("inquirer"));
-
-var _ora = _interopRequireDefault(require("ora"));
 
 function confirmCreate(_x, _x2, _x3, _x4) {
   return _confirmCreate.apply(this, arguments);
@@ -60,7 +56,7 @@ function _selectOptions() {
   _selectOptions = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
   _regenerator.default.mark(function _callee2() {
-    var options, spinner;
+    var options;
     return _regenerator.default.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -70,37 +66,9 @@ function _selectOptions() {
 
           case 2:
             options = _context2.sent;
-            console.log(options);
-            spinner = (0, _ora.default)('creating project...').start();
-            _context2.next = 7;
-            return new Promise(function (resolve) {
-              setTimeout(function () {
-                spinner.info('create project successfully');
-                resolve();
-              }, 5000);
-            });
+            return _context2.abrupt("return", options);
 
-          case 7:
-            spinner = (0, _ora.default)('npm install ...').start();
-            _context2.next = 10;
-            return new Promise(function (resolve) {
-              setTimeout(function () {
-                spinner.info('npm install successfully');
-                resolve();
-              }, 8000);
-            });
-
-          case 10:
-            spinner = (0, _ora.default)('check health ...').start();
-            _context2.next = 13;
-            return new Promise(function (resolve) {
-              setTimeout(function () {
-                spinner.succeed('Enjoy your time, Bye bye.');
-                resolve();
-              }, 2000);
-            });
-
-          case 13:
+          case 4:
           case "end":
             return _context2.stop();
         }
@@ -158,7 +126,7 @@ var typeOptions = [{
   type: 'list',
   name: 'db',
   message: 'Which DB client would you use?',
-  choices: ['Mongodb', 'Mysql', 'Postgres'],
+  choices: ['None', 'Mongodb', 'Mysql', 'Postgres(coming soon)'],
   filter: function filter(val) {
     return val.toLowerCase();
   }
@@ -166,7 +134,7 @@ var typeOptions = [{
   type: 'list',
   name: 'cache',
   message: 'Would you like a cache middleware?',
-  choices: ['Redis', 'Memcached(coming soon)'],
+  choices: ['None', 'Redis', 'Memcached(coming soon)'],
   filter: function filter(val) {
     return val.toLowerCase();
   }

@@ -13,9 +13,13 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _fs = _interopRequireDefault(require("fs"));
 
+var _ora = _interopRequireDefault(require("ora"));
+
 var _path = _interopRequireDefault(require("path"));
 
 var _options = require("./options");
+
+var _contribute = require("./contribute");
 
 var log = console.log;
 
@@ -27,7 +31,7 @@ function _run() {
   _run = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
   _regenerator.default.mark(function _callee(rawName) {
-    var inPlace, name, toDirName, isExistDir, confirmContinue, options;
+    var inPlace, name, toDirName, isExistDir, confirmContinue, options, spinner;
     return _regenerator.default.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -57,11 +61,35 @@ function _run() {
 
           case 13:
             options = _context.sent;
-            _context.next = 20;
-            break;
+            _context.next = 16;
+            return (0, _contribute.contribute)(options);
 
           case 16:
-            _context.prev = 16;
+            spinner = (0, _ora.default)('npm install ...').start();
+            _context.next = 19;
+            return new Promise(function (resolve) {
+              setTimeout(function () {
+                spinner.info('npm install successfully');
+                resolve();
+              }, 5000);
+            });
+
+          case 19:
+            spinner = (0, _ora.default)('check health ...').start();
+            _context.next = 22;
+            return new Promise(function (resolve) {
+              setTimeout(function () {
+                spinner.succeed('Enjoy your time, Bye bye.');
+                resolve();
+              }, 2000);
+            });
+
+          case 22:
+            _context.next = 28;
+            break;
+
+          case 24:
+            _context.prev = 24;
             _context.t0 = _context["catch"](0);
 
             if (_context.t0.message !== 'exist') {
@@ -70,12 +98,12 @@ function _run() {
 
             process.exit(0);
 
-          case 20:
+          case 28:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, this, [[0, 16]]);
+    }, _callee, this, [[0, 24]]);
   }));
   return _run.apply(this, arguments);
 }

@@ -62,3 +62,6 @@ typings/
 
 # test
 test/
+
+# templates
+templates/
