@@ -65,39 +65,46 @@ function _handleTemplate() {
   _handleTemplate = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
   _regenerator.default.mark(function _callee2() {
-    var existCacheDir, needUpdateTemplate, tplFile, spinner, updateInfo;
+    var existCacheDir, existRepoInfo, currVersion, needUpdateTemplate, tplFile, spinner, updateInfo;
     return _regenerator.default.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             existCacheDir = _fs.default.existsSync(_path.default.resolve(__dirname, '../templates'));
+            existRepoInfo = _fs.default.existsSync(_path.default.resolve(__dirname, '../templates/repoInfo'));
+            currVersion = 'x';
             needUpdateTemplate = true;
 
-            if (!existCacheDir) {
-              _context2.next = 10;
-              break;
+            if (existCacheDir && existRepoInfo) {
+              tplFile = JSON.parse(_fs.default.readFileSync(_path.default.resolve(__dirname, '../templates/repoInfo/version.json')));
+              currVersion = tplFile.version;
             }
 
-            tplFile = JSON.parse(_fs.default.readFileSync(_path.default.resolve(__dirname, '../templates/repoInfo/version.json')));
             spinner = (0, _ora.default)('Hold on... I am checking version.').start();
-            _context2.next = 7;
-            return checkVersion(tplFile.version);
+            _context2.next = 8;
+            return checkVersion(currVersion, existRepoInfo);
 
-          case 7:
+          case 8:
             updateInfo = _context2.sent;
             spinner.info("Checked version ok. version:".concat(updateInfo.version));
             needUpdateTemplate = updateInfo.update;
 
-          case 10:
             if (!needUpdateTemplate) {
-              _context2.next = 13;
+              _context2.next = 17;
               break;
             }
 
-            _context2.next = 13;
+            spinner = (0, _ora.default)('Updating new version ...').start();
+
+            _rimraf.default.sync(_path.default.resolve(__dirname, '../templates/src'));
+
+            _context2.next = 16;
             return downloadTemplate();
 
-          case 13:
+          case 16:
+            spinner.info("Updated ok!");
+
+          case 17:
           case "end":
             return _context2.stop();
         }
@@ -138,14 +145,14 @@ function _downloadTemplate() {
   return _downloadTemplate.apply(this, arguments);
 }
 
-function checkVersion(_x2) {
+function checkVersion(_x2, _x3) {
   return _checkVersion.apply(this, arguments);
 }
 
 function _checkVersion() {
   _checkVersion = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee4(version) {
+  _regenerator.default.mark(function _callee4(version, existRepoInfo) {
     var tmpVersion;
     return _regenerator.default.wrap(function _callee4$(_context4) {
       while (1) {
@@ -176,7 +183,9 @@ function _checkVersion() {
             });
 
           case 6:
-            _rimraf.default.sync(_path.default.resolve(__dirname, '../templates/repoInfo'));
+            if (existRepoInfo) {
+              _rimraf.default.sync(_path.default.resolve(__dirname, '../templates/repoInfo'));
+            }
 
             _fs.default.renameSync(_path.default.resolve(__dirname, '../templates/tmpVersion'), _path.default.resolve(__dirname, '../templates/repoInfo'));
 
