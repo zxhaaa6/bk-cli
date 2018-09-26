@@ -19,7 +19,7 @@ var _path = _interopRequireDefault(require("path"));
 
 var _options = require("./options");
 
-var _contribute = require("./contribute");
+var _main = require("./contribute/main");
 
 var log = console.log;
 
@@ -62,7 +62,7 @@ function _run() {
           case 13:
             options = _context.sent;
             _context.next = 16;
-            return (0, _contribute.contribute)(options);
+            return (0, _main.contribute)(toDirName, options);
 
           case 16:
             spinner = (0, _ora.default)('npm install ...').start();
