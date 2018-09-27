@@ -65,3 +65,4 @@ test/
 
 # templates
 templates/
+dist/templates/

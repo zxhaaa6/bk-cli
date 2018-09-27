@@ -19,6 +19,8 @@ var _path = _interopRequireDefault(require("path"));
 
 var _rimraf = _interopRequireDefault(require("rimraf"));
 
+var _common = require("./common");
+
 function handleGraphqlContribute(_x, _x2) {
   return _handleGraphqlContribute.apply(this, arguments);
 }
@@ -40,39 +42,43 @@ function _handleGraphqlContribute() {
 
             _fs.default.mkdirSync(dir);
 
+            _context.next = 5;
+            return (0, _common.handleCommonDirAndFiles)(dir, options);
+
+          case 5:
             if (!(options.jsType === 'typescript')) {
-              _context.next = 12;
+              _context.next = 14;
               break;
             }
 
             if (!(options.framework === 'graphql-yoga')) {
-              _context.next = 9;
+              _context.next = 11;
               break;
             }
 
-            _context.next = 7;
+            _context.next = 9;
             return graphqlYogaTs(dir, options);
 
-          case 7:
-            _context.next = 10;
+          case 9:
+            _context.next = 12;
             break;
 
-          case 9:
+          case 11:
             if (options.framework === 'express') {// express
             } else if (options.framework === 'koa') {// koa
             }
 
-          case 10:
-            _context.next = 13;
+          case 12:
+            _context.next = 15;
             break;
 
-          case 12:
+          case 14:
             if (options.framework === 'graphql-yoga') {// graphql
             } else if (options.framework === 'express') {// express
             } else if (options.framework === 'koa') {// koa
             }
 
-          case 13:
+          case 15:
           case "end":
             return _context.stop();
         }
