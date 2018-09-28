@@ -33,7 +33,7 @@ function _contribute() {
   _contribute = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
   _regenerator.default.mark(function _callee(dir, options) {
-    var spinner;
+    var spinner, existDir;
     return _regenerator.default.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -43,25 +43,32 @@ function _contribute() {
 
           case 2:
             spinner = (0, _ora.default)('I am doing my best to generate project.').start();
+            existDir = _fs.default.existsSync(dir);
+
+            if (existDir) {
+              _rimraf.default.sync(dir);
+            }
+
+            _fs.default.mkdirSync(dir);
 
             if (!(options.apiType === 'graphql')) {
-              _context.next = 8;
+              _context.next = 11;
               break;
             }
 
-            _context.next = 6;
+            _context.next = 9;
             return (0, _graphql.handleGraphqlContribute)(dir, options);
 
-          case 6:
-            _context.next = 10;
+          case 9:
+            _context.next = 13;
             break;
 
-          case 8:
-            _context.next = 10;
+          case 11:
+            _context.next = 13;
             return (0, _rest.handleRestContribute)(dir, options);
 
-          case 10:
-            _context.next = 12;
+          case 13:
+            _context.next = 15;
             return new Promise(function (resolve) {
               setTimeout(function () {
                 spinner.info('Generate project done!');
@@ -69,7 +76,7 @@ function _contribute() {
               }, 3000);
             });
 
-          case 12:
+          case 15:
           case "end":
             return _context.stop();
         }

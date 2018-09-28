@@ -15,6 +15,8 @@ var _fs = _interopRequireDefault(require("fs"));
 
 var _path = _interopRequireDefault(require("path"));
 
+var _ncp = _interopRequireDefault(require("../util/ncp"));
+
 function handleCommonDirAndFiles(_x, _x2) {
   return _handleCommonDirAndFiles.apply(this, arguments);
 }
@@ -65,22 +67,32 @@ function _handleCommonDirAndFiles() {
             throw new Error('Sorry, this feature will coming soon');
 
           case 17:
-            if (options.features.includes('Linter / Formatter')) {
-              _fs.default.copyFileSync(_path.default.resolve(__dirname, '../templates/src/common/.prettierrc'), _path.default.resolve(dir, './.prettierrc'));
-
-              if (options.jsType === 'typescript') {
-                _fs.default.copyFileSync(_path.default.resolve(__dirname, '../templates/src/common/tslint.json'), _path.default.resolve(dir, './tslint.json'));
-
-                _fs.default.copyFileSync(_path.default.resolve(__dirname, '../templates/src/common/tsconfig.json'), _path.default.resolve(dir, './tsconfig.json'));
-              } else {
-                _fs.default.copyFileSync(_path.default.resolve(__dirname, '../templates/src/common/.eslintrc'), _path.default.resolve(dir, './.eslintrc'));
-
-                _fs.default.copyFileSync(_path.default.resolve(__dirname, '../templates/src/common/.eslintignore'), _path.default.resolve(dir, './.eslintignore'));
-              }
+            if (!options.features.includes('Linter / Formatter')) {
+              _context.next = 26;
+              break;
             }
 
+            _fs.default.copyFileSync(_path.default.resolve(__dirname, '../templates/src/common/.prettierrc'), _path.default.resolve(dir, './.prettierrc'));
+
+            if (!(options.jsType === 'typescript')) {
+              _context.next = 24;
+              break;
+            }
+
+            _context.next = 22;
+            return (0, _ncp.default)(_path.default.resolve(__dirname, '../templates/src/common/ts/'), _path.default.resolve(dir, './'));
+
+          case 22:
+            _context.next = 26;
+            break;
+
+          case 24:
+            _context.next = 26;
+            return (0, _ncp.default)(_path.default.resolve(__dirname, '../templates/src/common/js/'), _path.default.resolve(dir, './'));
+
+          case 26:
             if (!options.features.includes('Docker Compose')) {
-              _context.next = 57;
+              _context.next = 65;
               break;
             }
 
@@ -90,84 +102,84 @@ function _handleCommonDirAndFiles() {
 
             dockerComposeFileDir = '../templates/src/docker/normal/docker-compose.yml';
             _context.t0 = options.db;
-            _context.next = _context.t0 === 'none' ? 25 : _context.t0 === 'mongodb' ? 34 : _context.t0 === 'mysql' ? 44 : _context.t0 === 'postgres' ? 54 : 55;
+            _context.next = _context.t0 === 'none' ? 33 : _context.t0 === 'mongodb' ? 42 : _context.t0 === 'mysql' ? 52 : _context.t0 === 'postgres' ? 62 : 63;
             break;
-
-          case 25:
-            _context.t1 = options.cache;
-            _context.next = _context.t1 === 'none' ? 28 : _context.t1 === 'redis' ? 29 : _context.t1 === 'memcached' ? 31 : 32;
-            break;
-
-          case 28:
-            return _context.abrupt("break", 33);
-
-          case 29:
-            dockerComposeFileDir = '../templates/src/docker/redis/docker-compose.yml';
-            return _context.abrupt("break", 33);
-
-          case 31:
-            throw new Error('Sorry, this feature will coming soon');
-
-          case 32:
-            return _context.abrupt("break", 33);
 
           case 33:
-            return _context.abrupt("break", 56);
-
-          case 34:
-            _context.t2 = options.cache;
-            _context.next = _context.t2 === 'none' ? 37 : _context.t2 === 'redis' ? 39 : _context.t2 === 'memcached' ? 41 : 42;
+            _context.t1 = options.cache;
+            _context.next = _context.t1 === 'none' ? 36 : _context.t1 === 'redis' ? 37 : _context.t1 === 'memcached' ? 39 : 40;
             break;
+
+          case 36:
+            return _context.abrupt("break", 41);
 
           case 37:
-            dockerComposeFileDir = '../templates/src/docker/mongo/docker-compose.yml';
-            return _context.abrupt("break", 43);
+            dockerComposeFileDir = '../templates/src/docker/redis/docker-compose.yml';
+            return _context.abrupt("break", 41);
 
           case 39:
-            dockerComposeFileDir = '../templates/src/docker/mongo/redis/docker-compose.yml';
-            return _context.abrupt("break", 43);
+            throw new Error('Sorry, this feature will coming soon');
+
+          case 40:
+            return _context.abrupt("break", 41);
 
           case 41:
-            throw new Error('Sorry, this feature will coming soon');
+            return _context.abrupt("break", 64);
 
           case 42:
-            return _context.abrupt("break", 43);
-
-          case 43:
-            return _context.abrupt("break", 56);
-
-          case 44:
-            _context.t3 = options.cache;
-            _context.next = _context.t3 === 'none' ? 47 : _context.t3 === 'redis' ? 49 : _context.t3 === 'memcached' ? 51 : 52;
+            _context.t2 = options.cache;
+            _context.next = _context.t2 === 'none' ? 45 : _context.t2 === 'redis' ? 47 : _context.t2 === 'memcached' ? 49 : 50;
             break;
 
+          case 45:
+            dockerComposeFileDir = '../templates/src/docker/mongo/docker-compose.yml';
+            return _context.abrupt("break", 51);
+
           case 47:
-            dockerComposeFileDir = '../templates/src/docker/mysql/docker-compose.yml';
-            return _context.abrupt("break", 53);
+            dockerComposeFileDir = '../templates/src/docker/mongo/redis/docker-compose.yml';
+            return _context.abrupt("break", 51);
 
           case 49:
-            dockerComposeFileDir = '../templates/src/docker/mysql/redis/docker-compose.yml';
-            return _context.abrupt("break", 53);
+            throw new Error('Sorry, this feature will coming soon');
+
+          case 50:
+            return _context.abrupt("break", 51);
 
           case 51:
-            throw new Error('Sorry, this feature will coming soon');
+            return _context.abrupt("break", 64);
 
           case 52:
-            return _context.abrupt("break", 53);
-
-          case 53:
-            return _context.abrupt("break", 56);
-
-          case 54:
-            throw new Error('Sorry, this feature will coming soon');
+            _context.t3 = options.cache;
+            _context.next = _context.t3 === 'none' ? 55 : _context.t3 === 'redis' ? 57 : _context.t3 === 'memcached' ? 59 : 60;
+            break;
 
           case 55:
-            return _context.abrupt("break", 56);
-
-          case 56:
-            _fs.default.copyFileSync(_path.default.resolve(__dirname, dockerComposeFileDir), _path.default.resolve(dir, './docker-compose.yml'));
+            dockerComposeFileDir = '../templates/src/docker/mysql/docker-compose.yml';
+            return _context.abrupt("break", 61);
 
           case 57:
+            dockerComposeFileDir = '../templates/src/docker/mysql/redis/docker-compose.yml';
+            return _context.abrupt("break", 61);
+
+          case 59:
+            throw new Error('Sorry, this feature will coming soon');
+
+          case 60:
+            return _context.abrupt("break", 61);
+
+          case 61:
+            return _context.abrupt("break", 64);
+
+          case 62:
+            throw new Error('Sorry, this feature will coming soon');
+
+          case 63:
+            return _context.abrupt("break", 64);
+
+          case 64:
+            _fs.default.copyFileSync(_path.default.resolve(__dirname, dockerComposeFileDir), _path.default.resolve(dir, './docker-compose.yml'));
+
+          case 65:
           case "end":
             return _context.stop();
         }

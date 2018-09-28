@@ -13,11 +13,7 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _fs = _interopRequireDefault(require("fs"));
 
-var _ora = _interopRequireDefault(require("ora"));
-
 var _path = _interopRequireDefault(require("path"));
-
-var _rimraf = _interopRequireDefault(require("rimraf"));
 
 var _common = require("./common");
 
@@ -31,56 +27,47 @@ function _handleGraphqlContribute() {
   _handleGraphqlContribute = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
   _regenerator.default.mark(function _callee(dir, options) {
-    var existDir;
     return _regenerator.default.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            existDir = _fs.default.existsSync(dir);
-
-            if (existDir) {
-              _rimraf.default.sync(dir);
-            }
-
-            _fs.default.mkdirSync(dir);
-
-            _context.next = 5;
+            _context.next = 2;
             return (0, _common.handleCommonDirAndFiles)(dir, options);
 
-          case 5:
+          case 2:
             if (!(options.jsType === 'typescript')) {
-              _context.next = 14;
-              break;
-            }
-
-            if (!(options.framework === 'graphql-yoga')) {
               _context.next = 11;
               break;
             }
 
-            _context.next = 9;
+            if (!(options.framework === 'graphql-yoga')) {
+              _context.next = 8;
+              break;
+            }
+
+            _context.next = 6;
             return graphqlYogaTs(dir, options);
+
+          case 6:
+            _context.next = 9;
+            break;
+
+          case 8:
+            if (options.framework === 'express') {// express
+            } else if (options.framework === 'koa') {// koa
+            }
 
           case 9:
             _context.next = 12;
             break;
 
           case 11:
-            if (options.framework === 'express') {// express
-            } else if (options.framework === 'koa') {// koa
-            }
-
-          case 12:
-            _context.next = 15;
-            break;
-
-          case 14:
             if (options.framework === 'graphql-yoga') {// graphql
             } else if (options.framework === 'express') {// express
             } else if (options.framework === 'koa') {// koa
             }
 
-          case 15:
+          case 12:
           case "end":
             return _context.stop();
         }
