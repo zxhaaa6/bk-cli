@@ -139,3 +139,14 @@ var typeOptions = [{
     return val.toLowerCase();
   }
 }];
+
+function featureOptions(options) {
+  var choices = [];
+
+  if (options.jsType === 'typescript') {
+    choices.push({
+      name: 'Webpack',
+      checked: true
+    });
+  }
+}
