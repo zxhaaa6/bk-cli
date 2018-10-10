@@ -3,6 +3,8 @@
 
 Note that: this cli tooling just only support `Graphql Server based on graphql-yoga` now, it is also on contributing.
 
+![Alt Text](https://github.com/zxhaaa6/bk-cli/tree/master/public/bk-cli-usage.gif)
+
 ## Installation
 Install CLI globally with
 ```
