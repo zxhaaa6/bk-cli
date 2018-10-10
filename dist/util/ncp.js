@@ -15,9 +15,9 @@ function _default(source, destination) {
     (0, _ncp.default)(source, destination, function (err) {
       if (err) {
         reject(new Error(err));
+      } else {
+        resolve();
       }
-
-      resolve();
     });
   });
 }
