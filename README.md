@@ -1,7 +1,16 @@
 # bk-cli
 🛠️ Cli Tooling for Rest/GraphQL backend Development.
 
-Note that: this cli tooling just only support `Graphql Server based on graphql-yoga` now, it is also on contributing.
+Note that: this cli tooling just only support little features now, it is also on contributing...
+| - | Typescript | Javascript |
+| :-------------: | :-------------: | :-------------: |
+| GraphQL Graphql-yoga  | X | - |
+| GraphQL Apollo Express | X | - |
+| GraphQL Apollo Koa | - | - |
+| REST Express | - | - |
+| REST Koa | - | - |
+| REST Egg | - | - |
+| REST Nest | - | - |
 
 [![asciicast](https://asciinema.org/a/y2HKfSSsJjVA4Uo17JgNPqs0j.png)](https://asciinema.org/a/y2HKfSSsJjVA4Uo17JgNPqs0j)
 

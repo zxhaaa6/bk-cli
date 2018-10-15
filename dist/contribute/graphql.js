@@ -36,7 +36,7 @@ function _handleGraphqlContribute() {
 
           case 2:
             if (!(options.jsType === 'typescript')) {
-              _context.next = 11;
+              _context.next = 16;
               break;
             }
 
@@ -49,25 +49,37 @@ function _handleGraphqlContribute() {
             return graphqlYogaTs(dir, options);
 
           case 6:
-            _context.next = 9;
+            _context.next = 14;
             break;
 
           case 8:
-            if (options.framework === 'express') {// express
-            } else if (options.framework === 'koa') {// koa
+            if (!(options.framework === 'express')) {
+              _context.next = 13;
+              break;
             }
 
-          case 9:
-            _context.next = 12;
-            break;
+            _context.next = 11;
+            return graphqlExpressTs(dir, options);
 
           case 11:
+            _context.next = 14;
+            break;
+
+          case 13:
+            if (options.framework === 'koa') {// koa
+            }
+
+          case 14:
+            _context.next = 17;
+            break;
+
+          case 16:
             if (options.framework === 'graphql-yoga') {// graphql
             } else if (options.framework === 'express') {// express
             } else if (options.framework === 'koa') {// koa
             }
 
-          case 12:
+          case 17:
           case "end":
             return _context.stop();
         }
@@ -142,4 +154,71 @@ function _graphqlYogaTs() {
     }, _callee2, this);
   }));
   return _graphqlYogaTs.apply(this, arguments);
+}
+
+function graphqlExpressTs(_x5, _x6) {
+  return _graphqlExpressTs.apply(this, arguments);
+}
+
+function _graphqlExpressTs() {
+  _graphqlExpressTs = (0, _asyncToGenerator2.default)(
+  /*#__PURE__*/
+  _regenerator.default.mark(function _callee3(dir, options) {
+    var SRC_DIR, MIDDLEWARE_PATH, MODULE_PATH, MODEL_PATH, SYSTEM_PATH, commonName;
+    return _regenerator.default.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            SRC_DIR = _path.default.resolve(dir, './src');
+            MIDDLEWARE_PATH = _path.default.resolve(dir, './src/middleware');
+            MODULE_PATH = _path.default.resolve(dir, './src/module');
+            MODEL_PATH = _path.default.resolve(dir, './src/model');
+            SYSTEM_PATH = _path.default.resolve(dir, './src/system');
+            commonName = '-normal';
+            _context3.t0 = options.db;
+            _context3.next = _context3.t0 === 'none' ? 9 : _context3.t0 === 'mongodb' ? 11 : _context3.t0 === 'mysql' ? 16 : 18;
+            break;
+
+          case 9:
+            commonName = '-normal';
+            return _context3.abrupt("break", 18);
+
+          case 11:
+            commonName = '-mongo';
+            _context3.next = 14;
+            return (0, _ncp.default)(_path.default.resolve(__dirname, '../templates/src/model/ts/mongo/'), _path.default.resolve(MODEL_PATH, './'));
+
+          case 14:
+            _fs.default.copyFileSync(_path.default.resolve(__dirname, "../templates/src/system/ts/mongoManager.ts"), _path.default.resolve(SYSTEM_PATH, './mongoManager.ts'));
+
+            return _context3.abrupt("break", 18);
+
+          case 16:
+            commonName = '-mysql';
+            return _context3.abrupt("break", 18);
+
+          case 18:
+            _fs.default.copyFileSync(_path.default.resolve(__dirname, "../templates/src/package/ts-graphql-express/package".concat(commonName, ".json")), _path.default.resolve(dir, './package.json'));
+
+            _fs.default.copyFileSync(_path.default.resolve(__dirname, "../templates/src/config/ts-graphql-yoga/config".concat(commonName, ".ts")), _path.default.resolve(SRC_DIR, './config/config.ts'));
+
+            _fs.default.copyFileSync(_path.default.resolve(__dirname, "../templates/src/app/ts-graphql/express/app.ts"), _path.default.resolve(SRC_DIR, './app.ts'));
+
+            _fs.default.copyFileSync(_path.default.resolve(__dirname, "../templates/src/app/ts-graphql/express/main".concat(commonName, ".ts")), _path.default.resolve(SRC_DIR, './main.ts'));
+
+            _context3.next = 24;
+            return (0, _ncp.default)(_path.default.resolve(__dirname, '../templates/src/middleware/ts/graphql-express/'), _path.default.resolve(MIDDLEWARE_PATH, './'));
+
+          case 24:
+            _context3.next = 26;
+            return (0, _ncp.default)(_path.default.resolve(__dirname, '../templates/src/module/ts-graphql/module/'), _path.default.resolve(MODULE_PATH, './'));
+
+          case 26:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, this);
+  }));
+  return _graphqlExpressTs.apply(this, arguments);
 }
