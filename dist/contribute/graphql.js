@@ -36,7 +36,7 @@ function _handleGraphqlContribute() {
 
           case 2:
             if (!(options.jsType === 'typescript')) {
-              _context.next = 16;
+              _context.next = 18;
               break;
             }
 
@@ -49,7 +49,7 @@ function _handleGraphqlContribute() {
             return graphqlYogaTs(dir, options);
 
           case 6:
-            _context.next = 14;
+            _context.next = 16;
             break;
 
           case 8:
@@ -62,24 +62,29 @@ function _handleGraphqlContribute() {
             return graphqlExpressTs(dir, options);
 
           case 11:
-            _context.next = 14;
+            _context.next = 16;
             break;
 
           case 13:
-            if (options.framework === 'koa') {// koa
+            if (!(options.framework === 'koa')) {
+              _context.next = 16;
+              break;
             }
 
-          case 14:
-            _context.next = 17;
-            break;
+            _context.next = 16;
+            return graphqlKoaTs(dir, options);
 
           case 16:
+            _context.next = 19;
+            break;
+
+          case 18:
             if (options.framework === 'graphql-yoga') {// graphql
             } else if (options.framework === 'express') {// express
             } else if (options.framework === 'koa') {// koa
             }
 
-          case 17:
+          case 19:
           case "end":
             return _context.stop();
         }
@@ -221,4 +226,66 @@ function _graphqlExpressTs() {
     }, _callee3, this);
   }));
   return _graphqlExpressTs.apply(this, arguments);
+}
+
+function graphqlKoaTs(_x7, _x8) {
+  return _graphqlKoaTs.apply(this, arguments);
+}
+
+function _graphqlKoaTs() {
+  _graphqlKoaTs = (0, _asyncToGenerator2.default)(
+  /*#__PURE__*/
+  _regenerator.default.mark(function _callee4(dir, options) {
+    var SRC_DIR, MODULE_PATH, MODEL_PATH, SYSTEM_PATH, commonName;
+    return _regenerator.default.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            SRC_DIR = _path.default.resolve(dir, './src');
+            MODULE_PATH = _path.default.resolve(dir, './src/module');
+            MODEL_PATH = _path.default.resolve(dir, './src/model');
+            SYSTEM_PATH = _path.default.resolve(dir, './src/system');
+            commonName = '-normal';
+            _context4.t0 = options.db;
+            _context4.next = _context4.t0 === 'none' ? 8 : _context4.t0 === 'mongodb' ? 10 : _context4.t0 === 'mysql' ? 15 : 17;
+            break;
+
+          case 8:
+            commonName = '-normal';
+            return _context4.abrupt("break", 17);
+
+          case 10:
+            commonName = '-mongo';
+            _context4.next = 13;
+            return (0, _ncp.default)(_path.default.resolve(__dirname, '../templates/src/model/ts/mongo/'), _path.default.resolve(MODEL_PATH, './'));
+
+          case 13:
+            _fs.default.copyFileSync(_path.default.resolve(__dirname, "../templates/src/system/ts/mongoManager.ts"), _path.default.resolve(SYSTEM_PATH, './mongoManager.ts'));
+
+            return _context4.abrupt("break", 17);
+
+          case 15:
+            commonName = '-mysql';
+            return _context4.abrupt("break", 17);
+
+          case 17:
+            _fs.default.copyFileSync(_path.default.resolve(__dirname, "../templates/src/package/ts-graphql-koa/package".concat(commonName, ".json")), _path.default.resolve(dir, './package.json'));
+
+            _fs.default.copyFileSync(_path.default.resolve(__dirname, "../templates/src/config/ts-graphql-yoga/config".concat(commonName, ".ts")), _path.default.resolve(SRC_DIR, './config/config.ts'));
+
+            _fs.default.copyFileSync(_path.default.resolve(__dirname, "../templates/src/app/ts-graphql/koa/app.ts"), _path.default.resolve(SRC_DIR, './app.ts'));
+
+            _fs.default.copyFileSync(_path.default.resolve(__dirname, "../templates/src/app/ts-graphql/koa/main".concat(commonName, ".ts")), _path.default.resolve(SRC_DIR, './main.ts'));
+
+            _context4.next = 23;
+            return (0, _ncp.default)(_path.default.resolve(__dirname, '../templates/src/module/ts-graphql/module/'), _path.default.resolve(MODULE_PATH, './'));
+
+          case 23:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, this);
+  }));
+  return _graphqlKoaTs.apply(this, arguments);
 }
