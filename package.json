@@ -1,15 +1,13 @@
 {
   "name": "bk-cli",
   "version": "0.0.3",
-  "author": "Berg",
+  "author": "Xihao Zhang",
   "bin": {
     "bk-cli": "./dist/index.js"
   },
   "engines": {
     "node": ">=v8.11.1"
   },
-  "license": "MIT",
-  "repository": "https://github.com/zxhaaa6/bk-cli.git",
   "scripts": {
     "build": "babel lib --out-dir dist",
     "lint": "eslint '{lib,tests}/**/*.js'",
@@ -32,6 +30,20 @@
     "user-home": "^2.0.0",
     "uuid": "^3.2.1"
   },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zxhaaa6/bk-cli.git"
+  },
+  "keywords": [
+    "backend",
+    "graphql",
+    "express"
+  ],
+  "bugs": {
+    "url": "https://github.com/zxhaaa6/bk-cli/issues"
+  },
+  "homepage": "https://github.com/zxhaaa6/bk-cli#readme",
   "devDependencies": {
     "@babel/cli": "^7.1.0",
     "@babel/core": "^7.1.0",
