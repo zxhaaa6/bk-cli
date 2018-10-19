@@ -1,6 +1,6 @@
 {
   "name": "bk-cli",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "author": "Berg",
   "bin": {
     "bk-cli": "./dist/index.js"
