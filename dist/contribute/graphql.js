@@ -271,7 +271,7 @@ function _graphqlKoaTs() {
           case 17:
             _fs.default.copyFileSync(_path.default.resolve(__dirname, "../templates/src/package/ts-graphql-koa/package".concat(commonName, ".json")), _path.default.resolve(dir, './package.json'));
 
-            _fs.default.copyFileSync(_path.default.resolve(__dirname, "../templates/src/config/ts-graphql-yoga/config".concat(commonName, ".ts")), _path.default.resolve(SRC_DIR, './config/config.ts'));
+            _fs.default.copyFileSync(_path.default.resolve(__dirname, "../templates/src/config/ts-graphql-koa/config".concat(commonName, ".ts")), _path.default.resolve(SRC_DIR, './config/config.ts'));
 
             _fs.default.copyFileSync(_path.default.resolve(__dirname, "../templates/src/app/ts-graphql/koa/app.ts"), _path.default.resolve(SRC_DIR, './app.ts'));
 
