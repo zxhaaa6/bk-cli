@@ -1,4 +1,6 @@
 # bk-cli
+[![npm](https://img.shields.io/npm/v/bk-cli.svg?style=flat-square)](http://www.npmjs.com/package/bk-cli)
+
 🛠️ Cli Tooling for Rest/GraphQL backend Development.
 
 Note that: this cli tooling just only support little features now, it is also on contributing...
