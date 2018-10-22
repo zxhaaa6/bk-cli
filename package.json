@@ -1,6 +1,6 @@
 {
   "name": "bk-cli",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "Xihao Zhang",
   "bin": {
     "bk-cli": "./dist/index.js"
@@ -36,7 +36,14 @@
   "keywords": [
     "backend",
     "graphql",
-    "express"
+    "express",
+    "koa",
+    "apollo",
+    "cli",
+    "back-end",
+    "backend-cli",
+    "bk",
+    "graphql-yoga"
   ],
   "bugs": {
     "url": "https://github.com/zxhaaa6/bk-cli/issues"
