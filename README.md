@@ -7,9 +7,9 @@ Note that: this cli tooling just only support little features now, it is also on
 
 | - | Typescript | Javascript |
 | :-------------: | :-------------: | :-------------: |
-| GraphQL Graphql-yoga  | X | - |
-| GraphQL Apollo Express | X | - |
-| GraphQL Apollo Koa | X | - |
+| GraphQL Graphql-yoga  | ✓ | - |
+| GraphQL Apollo Express | ✓ | - |
+| GraphQL Apollo Koa | ✓ | - |
 | REST Express | - | - |
 | REST Koa | - | - |
 | REST Egg | - | - |
