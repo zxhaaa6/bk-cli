@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+require("@babel/polyfill");
 
 var _commander = _interopRequireDefault(require("commander"));
 
@@ -10,6 +10,8 @@ var _chalk = _interopRequireDefault(require("chalk"));
 var _config = _interopRequireDefault(require("./config"));
 
 var _main = require("./main");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var log = console.log;
 
