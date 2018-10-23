@@ -1,5 +1,7 @@
 # bk-cli
 [![npm](https://img.shields.io/npm/v/bk-cli.svg?style=flat-square)](http://www.npmjs.com/package/bk-cli)
+[![Travis](https://img.shields.io/travis/zxhaaa6/bk-cli.svg?style=flat-square)](https://travis-ci.org/zxhaaa6/bk-cli)
+[![npm](https://img.shields.io/npm/l/bk-cli.svg?style=flat-square)](https://github.com/zxhaaa6/bk-cli/blob/master/LICENSE)
 
 🛠️ Cli Tooling for Rest/GraphQL backend Development.
 
