@@ -15,13 +15,13 @@ var _options = require("./options");
 
 var _main = require("./contribute/main");
 
+var _npm = require("./contribute/npm");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-var log = console.log;
 
 function run(_x) {
   return _run.apply(this, arguments);
@@ -65,18 +65,12 @@ function _run() {
             return (0, _main.contribute)(toDirName, options);
 
           case 16:
-            spinner = (0, _ora.default)('npm install ...').start();
-            _context.next = 19;
-            return new Promise(function (resolve) {
-              setTimeout(function () {
-                spinner.info('npm install successfully');
-                resolve();
-              }, 5000);
-            });
+            _context.next = 18;
+            return (0, _npm.installPackage)(toDirName);
 
-          case 19:
+          case 18:
             spinner = (0, _ora.default)('check health ...').start();
-            _context.next = 22;
+            _context.next = 21;
             return new Promise(function (resolve) {
               setTimeout(function () {
                 spinner.succeed('Enjoy your time, Bye bye.');
@@ -84,12 +78,12 @@ function _run() {
               }, 2000);
             });
 
-          case 22:
-            _context.next = 28;
+          case 21:
+            _context.next = 27;
             break;
 
-          case 24:
-            _context.prev = 24;
+          case 23:
+            _context.prev = 23;
             _context.t0 = _context["catch"](0);
 
             if (_context.t0.message !== 'exist') {
@@ -98,12 +92,12 @@ function _run() {
 
             process.exit(0);
 
-          case 28:
+          case 27:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, this, [[0, 24]]);
+    }, _callee, this, [[0, 23]]);
   }));
   return _run.apply(this, arguments);
 }

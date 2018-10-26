@@ -5,6 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  version: '0.0.6'
+  version: '0.1.1'
 };
 exports.default = _default;
