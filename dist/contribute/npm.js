@@ -36,7 +36,7 @@ function _installPackage() {
               }, function (err, stdout, stderr) {
                 if (err) {
                   spinner = spinner.fail("npm error: ".concat(err));
-                  reject(err);
+                  return reject(err);
                 }
 
                 spinner = spinner.info(stdout);
