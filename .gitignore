@@ -66,3 +66,6 @@ test/
 # templates
 templates/
 dist/templates/
+
+# package-lock
+package-lock.json
