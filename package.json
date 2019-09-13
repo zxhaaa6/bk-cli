@@ -1,6 +1,6 @@
 {
   "name": "bk-cli",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "Xihao Zhang",
   "bin": {
     "bk-cli": "./dist/index.js"
