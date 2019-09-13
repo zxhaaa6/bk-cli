@@ -1,4 +1,5 @@
 # bk-cli
+
 🛠️ Cli Tooling for Rest/GraphQL backend Development.
 
 [![npm](https://img.shields.io/npm/v/bk-cli.svg?style=flat-square)](http://www.npmjs.com/package/bk-cli)
@@ -7,23 +8,26 @@
 
 Note that: this cli tooling just only support little features now, it is also on contributing...
 
-| - | Typescript | Javascript |
-| :-------------: | :-------------: | :-------------: |
-| GraphQL Graphql-yoga  | ✓ | - |
-| GraphQL Apollo Express | ✓ | - |
-| GraphQL Apollo Koa | ✓ | - |
-| REST Express | - | - |
-| REST Koa | - | - |
-| REST Egg | - | - |
-| REST Nest | - | - |
+|           -            | Typescript | Javascript |
+| :--------------------: | :--------: | :--------: |
+|  GraphQL Graphql-yoga  |     ✓      |     -      |
+| GraphQL Apollo Express |     ✓      |     -      |
+|   GraphQL Apollo Koa   |     ✓      |     -      |
+|      REST Express      |     -      |     -      |
+|        REST Koa        |     -      |     -      |
+|        REST Egg        |     -      |     -      |
+|       REST Nest        |     -      |     -      |
 
-[![asciicast](https://asciinema.org/a/y2HKfSSsJjVA4Uo17JgNPqs0j.png)](https://asciinema.org/a/y2HKfSSsJjVA4Uo17JgNPqs0j)
+[![img](https://github.com/zxhaaa6/bk-cli/blob/master/doc/bk-demo.gif)]
 
 ## Installation
+
 Install CLI globally with
+
 ```
 $ npm install -g bk-cli
 ```
+
 Now you can run CLI using following command anywhere
 
 ```
